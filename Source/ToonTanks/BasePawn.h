@@ -15,27 +15,27 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Speed;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta=(AllowPrivateAccess = "true"))
 	class UCapsuleComponent* CapsuleComponent; // Forward declaration reduces compile time
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components", meta=(AllowPrivateAccess = "true")) // AllowPrivateAccess is used to access private variables in blueprint
 	UStaticMeshComponent* BaseMesh;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components", meta=(AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components", meta=(AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 };
