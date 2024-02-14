@@ -33,6 +33,8 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class UCameraComponent* Camera;
 
+	APlayerController* PlayerController;
+	
 	void Move(const FInputActionInstance& ActionValue);
 	void Translate(float ForwardValue);
 	void Turn(float TurnValue);
