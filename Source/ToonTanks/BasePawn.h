@@ -25,6 +25,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TurnSpeed;
 
+	void RotateTurret(const FVector& TargetPosition) const;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta=(AllowPrivateAccess = "true"))
 	class UCapsuleComponent* CapsuleComponent; // Forward declaration reduces compile time
@@ -37,8 +39,5 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components", meta=(AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 };

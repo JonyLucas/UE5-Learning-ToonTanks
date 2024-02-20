@@ -3,6 +3,7 @@
 
 #include "Tank.h"
 
+#include "DrawDebugHelpers.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
@@ -40,6 +41,23 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if(PlayerController)
+	{
+		FHitResult MouseHitResult;
+		if(PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, MouseHitResult))
+		{
+			const FVector MouseLocation = MouseHitResult.ImpactPoint;
+			// DrawDebugSphere(GetWorld(), MouseLocation, 25, 12, FColor::Red, false, 0.5f);
+			RotateTurret(MouseLocation);
+			
+		}
+	}
 }
 
 void ATank::Move(const FInputActionInstance& ActionValue)
