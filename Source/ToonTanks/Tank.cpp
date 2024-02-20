@@ -35,6 +35,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATank::Move);
+		EnhancedInputComponent->BindAction(FireAction, ETriggerEvent::Triggered, this, &ATank::Fire);
 	}
 }
 
@@ -55,7 +56,6 @@ void ATank::Tick(float DeltaTime)
 			const FVector MouseLocation = MouseHitResult.ImpactPoint;
 			// DrawDebugSphere(GetWorld(), MouseLocation, 25, 12, FColor::Red, false, 0.5f);
 			RotateTurret(MouseLocation);
-			
 		}
 	}
 }

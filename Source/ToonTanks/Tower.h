@@ -21,8 +21,16 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
+	void CheckFireCondition();
+	bool InFireRange() const;
+	
 	UPROPERTY(EditAnywhere)
-	float TargetDistance = 500.f;
+	float FireRange = 500.f;
+
+	UPROPERTY(EditAnywhere)
+	float FireRate = 2.f;
+
+	FTimerHandle FireRateTimerHandle;
 	
 	class ATank* TankReference;	
 };

@@ -18,14 +18,15 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void Fire();
+	
+	void RotateTurret(const FVector& TargetPosition) const;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Speed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TurnSpeed;
-
-	void RotateTurret(const FVector& TargetPosition) const;
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta=(AllowPrivateAccess = "true"))
