@@ -42,6 +42,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
+	// GetWorldTimerManager().SetTimer(FireRateTimerHandle, this, &ATank::CheckFireCondition, FireRate, true);
 }
 
 void ATank::Tick(float DeltaTime)

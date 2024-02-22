@@ -36,7 +36,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class UCameraComponent* Camera;
 
+	UPROPERTY(EditAnywhere)
+	float FireRate = 2.f;
+
 	APlayerController* PlayerController;
+	FTimerHandle FireRateTimerHandle;
 	
 	void Move(const FInputActionInstance& ActionValue);
 	void Translate(float ForwardValue);
