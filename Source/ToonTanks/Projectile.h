@@ -38,4 +38,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float MaxSpeed = 4000.f;
+
+	UPROPERTY(EditAnywhere)
+	float Damage = 30.f;
 };
