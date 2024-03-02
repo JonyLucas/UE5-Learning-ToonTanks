@@ -36,6 +36,8 @@ void AToonTankGameMode::HandleGameStart()
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 	PlayerControllerRef = Cast<ATankPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 
+	GameStart();
+
 	if (PlayerControllerRef)
 	{
 		PlayerControllerRef->SetPlayerEnabledState(false);

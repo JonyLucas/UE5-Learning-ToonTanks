@@ -20,6 +20,9 @@ public:
 protected:
 	void BeginPlay() override;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameStart();
+
 private:
 	class ATank* Tank;
 	class ATankPlayerController* PlayerControllerRef;
