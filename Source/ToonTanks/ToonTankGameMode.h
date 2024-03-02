@@ -23,4 +23,9 @@ protected:
 private:
 	class ATank* Tank;
 	class ATankPlayerController* PlayerControllerRef;
+
+	UPROPERTY(EditAnywhere)
+	float StartDelay = 3.f;
+
+	void HandleGameStart();
 };
