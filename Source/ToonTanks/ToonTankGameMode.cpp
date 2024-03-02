@@ -15,26 +15,13 @@ void AToonTankGameMode::BeginPlay()
 	HandleGameStart();
 }
 
-void AToonTankGameMode::ActorDied(AActor* DeadActor)
-{
-	if (DeadActor == Tank)
-	{
-		Tank->HandleDestruction();
-		if (PlayerControllerRef)
-		{
-			PlayerControllerRef->SetPlayerEnabledState(false);
-		}
-	}
-	else if (const auto Tower = Cast<ATower>(DeadActor))
-	{
-		Tower->HandleDestruction();
-	}
-}
-
 void AToonTankGameMode::HandleGameStart()
 {
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
-	PlayerControllerRef = Cast<ATankPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+	PlayerControllerRef = Cast<ATankPlayerController>(UGameplayStatics::GetPlayerController(this, 0)); // Game Mode can be passed as world context object
+	TArray<AActor*> Towers;
+	UGameplayStatics::GetAllActorsOfClass(this, ATower::StaticClass(), Towers);
+	TargetTowersCount = Towers.Num();
 
 	GameStart();
 
@@ -47,3 +34,27 @@ void AToonTankGameMode::HandleGameStart()
 		GetWorldTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay, false);
 	}
 }
+
+void AToonTankGameMode::ActorDied(AActor* DeadActor)
+{
+	if (DeadActor == Tank)
+	{
+		Tank->HandleDestruction();
+		if (PlayerControllerRef)
+		{
+			PlayerControllerRef->SetPlayerEnabledState(false);
+		}
+
+		GameOver(false);
+	}
+	else if (const auto Tower = Cast<ATower>(DeadActor))
+	{
+		Tower->HandleDestruction();
+		--TargetTowersCount;
+		if (TargetTowersCount == 0)
+		{
+			GameOver(true);
+		}
+	}
+}
+
