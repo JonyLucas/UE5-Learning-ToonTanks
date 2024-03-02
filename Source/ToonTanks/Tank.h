@@ -17,6 +17,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable)
+	virtual void HandleDestruction() override;
+
+	UFUNCTION(BlueprintCallable)
+	APlayerController* GetPlayerController() const { return PlayerController; }
+
 protected:
 	virtual void BeginPlay() override;
 

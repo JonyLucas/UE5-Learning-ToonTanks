@@ -39,6 +39,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	}
 }
 
+
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
@@ -59,6 +60,13 @@ void ATank::Tick(float DeltaTime)
 			RotateTurret(MouseLocation);
 		}
 	}
+}
+
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
 }
 
 void ATank::Move(const FInputActionInstance& ActionValue)
