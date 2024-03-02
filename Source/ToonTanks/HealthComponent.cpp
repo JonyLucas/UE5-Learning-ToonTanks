@@ -39,11 +39,8 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
 {
 	CurrentHealth -= Damage;
 	UE_LOG(LogTemp, Warning, TEXT("Health of %s: %f"), *GetOwner()->GetName(), CurrentHealth);
-	if (CurrentHealth <= 0)
+	if (CurrentHealth <= 0 && GameMode)
 	{
-		if (GameMode)
-		{
-			GameMode->ActorDied(GetOwner());
-		}
+		GameMode->ActorDied(GetOwner());
 	}
 }
