@@ -27,7 +27,7 @@ private:
 	class ATank* Tank;
 	class ATankPlayerController* PlayerControllerRef;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
 	float StartDelay = 3.f;
 
 	void HandleGameStart();
