@@ -30,6 +30,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="Combat")
 	UStaticMeshComponent* ProjectileMesh;
 
+	UPROPERTY(EditAnywhere, Category="Combat")
+	UParticleSystem* HitParticle;
+
 	UPROPERTY(VisibleAnywhere)
 	class UProjectileMovementComponent* ProjectileMovement;
 

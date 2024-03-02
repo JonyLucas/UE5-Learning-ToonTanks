@@ -49,6 +49,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 
 	const auto DamageType = UDamageType::StaticClass();
 	UGameplayStatics::ApplyDamage(OtherActor, Damage, InstigatorController, this, DamageType);
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticle, GetActorLocation());
 	Destroy();
 	
 }
