@@ -5,6 +5,7 @@
 
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -18,6 +19,9 @@ AProjectile::AProjectile()
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->InitialSpeed = Speed;
 	ProjectileMovement->MaxSpeed = MaxSpeed;
+
+	ParticleComponent = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle Component"));
+	ParticleComponent->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -32,7 +36,6 @@ void AProjectile::BeginPlay()
 void AProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent,

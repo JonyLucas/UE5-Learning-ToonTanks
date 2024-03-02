@@ -33,6 +33,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="Combat")
 	UParticleSystem* HitParticle;
 
+	UPROPERTY(VisibleAnywhere, Category="Combat")
+	UParticleSystemComponent* ParticleComponent;
+
 	UPROPERTY(VisibleAnywhere)
 	class UProjectileMovementComponent* ProjectileMovement;
 
