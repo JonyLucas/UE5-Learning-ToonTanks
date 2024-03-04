@@ -36,6 +36,12 @@ private:
 	UPROPERTY(VisibleAnywhere, Category="Combat")
 	UParticleSystemComponent* ParticleComponent;
 
+	UPROPERTY(EditAnywhere, Category="Combat")
+	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category="Combat")
+	USoundBase* HitSound;
+
 	UPROPERTY(VisibleAnywhere)
 	class UProjectileMovementComponent* ProjectileMovement;
 

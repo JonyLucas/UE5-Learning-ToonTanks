@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Projectile.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -35,7 +36,15 @@ void ABasePawn::BeginPlay()
 
 void ABasePawn::HandleDestruction()
 {
-	// TODO Visual/sound effects
+	if (DeathParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DeathParticle, GetActorLocation(), GetActorRotation());
+	}
+
+	if (DeathSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DeathSound, GetActorLocation());
+	}
 }
 
 void ABasePawn::RotateTurret(const FVector& TargetPosition) const
