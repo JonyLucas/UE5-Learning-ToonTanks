@@ -34,6 +34,10 @@ void ATower::HandleDestruction()
 
 void ATower::CheckFireCondition()
 {
+	if(!TankReference || !TankReference->GetIsActorAlive())
+	{
+		return;
+	}
 	if (TankReference && InFireRange())
 	{
 		Fire();

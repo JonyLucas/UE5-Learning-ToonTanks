@@ -4,7 +4,6 @@
 #include "BasePawn.h"
 
 #include "Components/CapsuleComponent.h"
-#include "DrawDebugHelpers.h"
 #include "Projectile.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -32,6 +31,7 @@ ABasePawn::ABasePawn()
 void ABasePawn::BeginPlay()
 {
 	Super::BeginPlay();
+	bIsActorAlive = true;
 }
 
 void ABasePawn::HandleDestruction()
@@ -50,6 +50,8 @@ void ABasePawn::HandleDestruction()
 	{
 		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathShake);
 	}
+
+	bIsActorAlive = false;
 }
 
 void ABasePawn::RotateTurret(const FVector& TargetPosition) const
@@ -62,6 +64,11 @@ void ABasePawn::RotateTurret(const FVector& TargetPosition) const
 
 void ABasePawn::Fire()
 {
+	if(!bIsActorAlive)
+	{
+		return;
+	}
+	
 	// UE_LOG(LogTemp, Warning, TEXT("Fire"));
 	// DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 25, 12, FColor::Red, false, 2.f, 0, 1.f);	
 	const auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,

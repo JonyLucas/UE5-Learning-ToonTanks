@@ -16,6 +16,7 @@ public:
 	ABasePawn();
 
 	virtual void HandleDestruction();
+	bool GetIsActorAlive() const { return bIsActorAlive; }
 
 protected:
 	// Called when the game starts or when spawned
@@ -57,5 +58,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Combat")
 	TSubclassOf<UCameraShakeBase> DeathShake;
+
+	bool bIsActorAlive = true;
 
 };
